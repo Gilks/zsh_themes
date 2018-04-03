@@ -80,8 +80,8 @@ prompt_end() {
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-  	eth=$(ifconfig eth0 | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
-    wlan=$(ifconfig wlan0 | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
+  	eth=$(ifconfig eth0 >> /dev/null 2>&1 | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
+    wlan=$(ifconfig wlan0 >> /dev/null 2>&1 | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
   	if [ ! -z $eth ]; then
   		IP=$eth
 
