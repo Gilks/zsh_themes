@@ -7,10 +7,16 @@ local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
 # Update the IP if we change networks
 precmd () {
+	tun=$(ifconfig tun0 >> /dev/null 2>&1  | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
+	usb=$(ifconfig usb0 >> /dev/null 2>&1  | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
 	eth=$(ifconfig eth0 >> /dev/null 2>&1 | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
 	wlan=$(ifconfig wlan0 >> /dev/null 2>&1  | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
 
-	if [ ! -z $eth ]; then
+	if [ ! -z $tun ]; then
+		IP=$tun
+	elif [ ! -z $usb ]; then
+		IP=$usb
+	elif [ ! -z $eth ]; then
 		IP=$eth
 	elif [ ! -z $wlan ]; then
 		IP=$wlan
