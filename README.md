@@ -1,7 +1,7 @@
 ## Description
 These are a couple of existing zsh themes that I tweaked to fit my needs. I found myself doing an ifconfig quite a bit and decided it would be nice if I could incorporate the internal IP address that I was assigned.
 
-The IP address will show the hard wired IP you were assigned. If there is no hard wired IP, it will show the wireless IP. If there is no wireless, it will show 127.0.0.1.
+If you are connected to VPN it will show that IP first. If there is no VPN it will show the hard wired IP. If you're not hard wired, it will show the wireless IP. If there is no wireless, it will show 127.0.0.1.
 
 The IP is updated each time you press enter.
 
